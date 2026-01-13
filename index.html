@@ -6,17 +6,852 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Open Research Europe (ORE) - High-quality, reliable, and efficient open access publishing for European research." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,400&family=Questrial&display=swap"
     rel="stylesheet">
+
   <title>Open Research Europe | Powered by CERN</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <style>
+    /* CSS from index.css and App.css */
+    /* Custom Fonts */
+    @font-face {
+      font-family: 'Söhne';
+      src: url('fonts/WOFF2/soehne-buch.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Söhne';
+      src: url('fonts/WOFF2/soehne-halbfett.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Tiempos Headline';
+      src: url('fonts/WOFF2/tiempos-headline-light.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'ITC Avant Garde Gothic';
+      src: url('fonts/ITC Avant Garde Gothic Pro Medium/ITCAvantGardePro-Md.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    :root {
+      /* Colors */
+      --color-helvetia-blue: #003366;
+      --primary: #003366;
+      /* User requested logo variable */
+      --color-arctic-white: #FFFFFF;
+      --color-deep-black: #000000;
+      --color-text-body: #1a1a1a;
+      --color-light-gray: #f5f5f5;
+      --color-border: #e0e0e0;
+
+      /* Mosaic Accents (Simulated) */
+      --color-mosaic-green: #2e7d32;
+      --color-mosaic-blue: #1565c0;
+      --color-mosaic-tech: #546e7a;
+      --color-mosaic-pink: #ad1457;
+      --color-mosaic-warm: #d84315;
+      --color-mosaic-art: #4527a0;
+
+      /* Typography */
+      --font-serif: 'Tiempos Headline', 'Playfair Display', serif;
+      --font-sans: 'Söhne', 'Inter', sans-serif;
+      --font-brand: 'ITC Avant Garde Gothic', 'Questrial', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-arctic-white);
+      color: var(--color-text-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.7;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: inherit;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    /* Layout Utilities */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header */
+    .header {
+      background-color: var(--color-helvetia-blue);
+      color: var(--color-arctic-white);
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.8rem;
+    }
+
+    .logo {
+      font-family: var(--font-brand);
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--color-arctic-white);
+      line-height: 1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 1.2rem;
+    }
+
+    /* User Logo */
+    .logo-graphic {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-graphic-gradient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: repeating-conic-gradient(from 0deg, white 0deg 5deg, var(--primary) 5deg 10deg);
+    }
+
+    .logo-graphic-dot {
+      position: absolute;
+      top: 50%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      width: 16px;
+      height: 16px;
+      background: var(--primary);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      position: relative;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: white;
+      transition: width 0.3s;
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      background-color: var(--color-helvetia-blue);
+      color: var(--color-arctic-white);
+      padding: 8rem 0 10rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+    }
+
+    /* News */
+    .news-section {
+      padding: 5rem 0;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .news-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      padding: 2rem;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .news-date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .news-title {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .news-excerpt {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    /* About */
+    .about-section {
+      padding: 6rem 0;
+      color: var(--color-text-body);
+    }
+
+    .about-content {
+      display: block;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      width: 100%;
+    }
+
+    .about-text h2 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--color-helvetia-blue);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 6rem 0;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      text-align: left;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-helvetia-blue);
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    /* funders & Partners */
+    .logos-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .alt-bg {
+      background-color: var(--color-light-gray) !important;
+    }
+
+    .logos-section h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--color-helvetia-blue);
+    }
+
+    .logos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .logo-item {
+      height: 60px;
+      max-width: 180px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s;
+    }
+
+    .logo-item:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Partners Section (Small variant) */
+    .partners-section {
+      padding: 3rem 0;
+      background-color: #f9f9f9;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .partners-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .partners-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .partners-content h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--color-helvetia-blue);
+      margin: 0;
+    }
+
+    .partners-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .logo-item-small {
+      height: 35px;
+      max-width: 120px;
+      object-fit: contain;
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s;
+    }
+
+    .logo-item-small:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    .powered-by-cern {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-left: 2rem;
+      border-left: 1px solid var(--color-border);
+    }
+
+    .cern-logo-tiny {
+      height: 24px;
+      opacity: 1;
+    }
+
+    .powered-by-text {
+      font-family: var(--font-brand);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-helvetia-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background-color: var(--color-helvetia-blue);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: background-color 0.2s;
+    }
+
+    .submit-btn:hover {
+      background-color: #002244;
+    }
+
+
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 8px;
+      max-width: 700px;
+      width: 90%;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: #666;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      opacity: 1;
+    }
+
+    .modal-date {
+      font-size: 0.9rem;
+      color: var(--color-helvetia-blue);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .modal-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .modal-body {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-content">
+        <a href="/" class="logo">
+          <div class="logo-graphic">
+            <div class="logo-graphic-gradient"></div>
+            <div class="logo-graphic-dot"></div>
+          </div>
+          <div class="logo-text">
+            <span>open</span>
+            <span>research</span>
+            <span>europe</span>
+          </div>
+        </a>
+        <div class="header-right">
+          <nav class="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#about" onclick="scrollToAbout(event)">About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1>Open Research. Shared Progress.</h1>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2>About ORE</h2>
+            <p>Open Research Europe (ORE) is an open access publishing platform established in 2021 to support
+              researchers funded by the European Commission's Horizon 2020 and Horizon Europe programs. The platform
+              provides a venue for publishing research outputs—including articles, data, and software—in an open,
+              transparent manner with open peer review. It aims to accelerate scientific communication and ensure
+              publicly funded research is freely accessible.</p>
+            <p>2026 will be the year of a significant evolution of the platform, evolving as a collaborative, non-profit
+              initiative. This new phase expands ORE beyond its original European Commission funding model to become a
+              collective effort supported by 10 national funders and research institutions across Europe, alongside
+              continued European Commission involvement.</p>
+            <p>The new version of ORE will maintain the platform's core commitment to open access and open peer review
+              while broadening its scope in important ways. Publishing eligibility will expand beyond European
+              Commission-funded researchers, making the platform accessible to a wider research community. The platform
+              will also progressively align with diamond open access principles as defined in the 'Action Plan for
+              Diamond Open Access', ensuring research is published without fees for either authors or readers.</p>
+            <p>CERN will serve as the operating and hosting organization, providing the technical, operational, and
+              administrative infrastructure necessary for the platform's daily management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section class="news-section alt-bg">
+      <div class="container">
+        <h2
+          style="font-family: var(--font-serif); font-size: 2.5rem; text-align: center; margin-bottom: 2rem; color: var(--color-helvetia-blue);">
+          News</h2>
+        <div class="news-grid">
+          <!-- News Item 1 -->
+          <article class="news-card" onclick="openModal(0)">
+            <span class="news-date">12 DEC 2025</span>
+            <h3 class="news-title">CERN Council approves Open Research Europe being hosted by CERN</h3>
+            <p class="news-excerpt">In December 2025, the CERN Council approved CERN’s role as the hosting and operating
+              organisation for Open Research Europe (ORE), a non-profit, open access scientific publishing platform
+              initiated by the European Commission.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section">
+      <div class="container contact-container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Have questions about Open Research Europe? We're here to help. Reach out to our team for support or
+              inquiries.</p>
+          </div>
+          <form class="contact-form" onsubmit="handleContactSubmit(event)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="your.email@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="How can we help you?" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funders -->
+    <section class="logos-section alt-bg">
+      <div class="container">
+        <h2>Funders</h2>
+        <div class="logos-grid">
+          <!-- ANR -->
+          <a href="https://anr.fr/en/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/ANR/RF+ANR-LOGO.jpg" alt="ANR" class="logo-item">
+          </a>
+          <!-- ARIS -->
+          <a href="http://www.aris-rs.si" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/ARIS/ARISLogoAngCentr.png" alt="ARIS" class="logo-item">
+          </a>
+          <!-- BMFTR -->
+          <a href="https://www.bmbf.de/en/index.html" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/BMFTR/11_-bmftr-englisch-neu.png" alt="BMFTR" class="logo-item">
+          </a>
+          <!-- CERN -->
+          <a href="https://home.cern" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/CERN/Outline/PNG/LogoOutline-Blue.png" alt="CERN" class="logo-item">
+          </a>
+          <!-- CNRS -->
+          <a href="https://www.cnrs.fr/en" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/CNRS/LOGO/DIGITAL/RVB/LOGO_CNRS_BLEU.png" alt="CNRS" class="logo-item">
+          </a>
+          <!-- CSIC -->
+          <a href="https://www.csic.es" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/CSIC/1-CSIC-Logotipo--COLOR--CSIC.png" alt="CSIC" class="logo-item">
+          </a>
+          <!-- EU -->
+          <a href="https://commission.europa.eu" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/EU/normal-reproduction-low-resolution.jpg" alt="EU" class="logo-item">
+          </a>
+          <!-- FCT -->
+          <a href="https://www.fct.pt/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/FCT/2022_Logotipo_FCT/2022_FCT_Logo_A_horizontal_preto.png" alt="FCT"
+              class="logo-item" style="height: 100px; max-width: 280px;">
+          </a>
+          <!-- FECYT -->
+          <a href="https://www.fecyt.es/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/FECYT/logo-fecyt.png" alt="FECYT" class="logo-item">
+          </a>
+          <!-- FORMAS -->
+          <a href="https://formas.se/en/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/FORMAS/Formas_logotyp_svart_RGB.png" alt="FORMAS" class="logo-item">
+          </a>
+          <!-- FORTE -->
+          <a href="https://forte.se/en/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/Forte%C2%B4s%20logotype/FORTE-logo-cmyk-1A-EN.png" alt="FORTE" class="logo-item">
+          </a>
+          <!-- FWF -->
+          <a href="https://www.fwf.ac.at/en/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/FWF/FWF_Logo_Zusatz_Dunkelblau_RGB_EN.png" alt="FWF" class="logo-item">
+          </a>
+          <!-- MUR -->
+          <a href="https://www.mur.gov.it/en" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/MUR/Loghi_MUR/Loghi%20MUR/LOGO_MUR.svg" alt="MUR" class="logo-item">
+          </a>
+          <!-- NWO -->
+          <a href="https://www.nwo.nl/en" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/NWO/NWO%20logo%20-%20full%20colour%20-%20RGB%20-%20transparante%20achtergrond.png"
+              alt="NWO" class="logo-item">
+          </a>
+          <!-- OPERAS -->
+          <a href="https://operas-eu.org/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/OPERAS/cropped-OPERAS-LOgo-website-small.png" alt="OPERAS" class="logo-item">
+          </a>
+          <!-- RCN -->
+          <a href="https://www.forskningsradet.no/en/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/RCN/Forskningsradet_Logo_Engelsk_01_Weller_RGB.png" alt="RCN" class="logo-item">
+          </a>
+          <!-- SNSF -->
+          <a href="https://www.snf.ch/en" target="_blank" rel="noopener noreferrer">
+            <img
+              src="assets/funders/SNSF/SNF_logo_standard_web_color_heller_Hintergrund/png/SNF_logo_standard_web_color_pos_e.png"
+              alt="SNSF" class="logo-item">
+          </a>
+          <!-- Science Europe -->
+          <a href="https://www.scienceeurope.org/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/funders/Science%20Europe/SE_Logo_Horizontal_CMYK_nm.png" alt="Science Europe"
+              class="logo-item">
+          </a>
+          <!-- VR -->
+          <a href="https://www.vr.se/english.html" target="_blank" rel="noopener noreferrer">
+            <img
+              src="assets/funders/Vetenskapsrådet_Swedish%20Research%20Council/logotyp_vetenskapsrådet_liggande_ENG_RGB_1000px.png"
+              alt="VR" class="logo-item">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners (Redesigned) -->
+    <section class="partners-section">
+      <div class="container partners-container">
+        <div class="partners-content">
+          <h3>Partners</h3>
+          <div class="partners-links">
+            <!-- OPERAS -->
+            <a href="https://operas-eu.org/" target="_blank" rel="noopener noreferrer">
+              <img src="assets/funders/OPERAS/cropped-OPERAS-LOgo-website-small.png" alt="OPERAS"
+                class="logo-item-small">
+            </a>
+            <!-- Science Europe -->
+            <a href="https://www.scienceeurope.org/" target="_blank" rel="noopener noreferrer">
+              <img src="assets/funders/Science%20Europe/SE_Logo_Horizontal_CMYK_nm.png" alt="Science Europe"
+                class="logo-item-small">
+            </a>
+          </div>
+        </div>
+        <div class="powered-by-cern">
+          <img src="assets/funders/CERN/Outline/PNG/LogoOutline-Blue.png" alt="CERN" class="cern-logo-tiny">
+          <span class="powered-by-text">Powered by CERN</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal -->
+  <div id="news-modal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <span id="modal-date" class="modal-date"></span>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <p id="modal-body" class="modal-body"></p>
+    </div>
+  </div>
+
+  <script>
+    // News Data
+    const newsItems = [
+      {
+        date: "12 DEC 2025",
+        title: "CERN Council approves Open Research Europe being hosted by CERN",
+        body: "In December 2025, the CERN Council approved CERN’s role as the hosting and operating organisation for Open Research Europe (ORE), a non-profit, open access scientific publishing platform initiated by the European Commission."
+      }
+    ];
+
+    // Modal Logic
+    function openModal(index) {
+      const item = newsItems[index];
+      document.getElementById('modal-date').textContent = item.date;
+      document.getElementById('modal-title').textContent = item.title;
+      document.getElementById('modal-body').textContent = item.body;
+      document.getElementById('news-modal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('news-modal').classList.remove('open');
+    }
+
+    // Smooth Scroll
+    function scrollToAbout(e) {
+      e.preventDefault();
+      const section = document.getElementById('about');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Contact Form Handler
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      const subject = encodeURIComponent("Contact from ORE Website: " + name);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+
+      window.location.href = `mailto:?to=ore.contact@cern.ch&subject=${subject}&body=${body}`;
+    }
+  </script>
 </body>
 
 </html>
