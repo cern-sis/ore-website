@@ -218,7 +218,9 @@
         border: 1px solid var(--color-border);
         border-radius: 4px;
         cursor: pointer;
-        transition: transform 0.25s ease, box-shadow 0.25s ease,
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
           border-color 0.25s ease;
         position: relative;
       }
@@ -305,7 +307,10 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
         cursor: pointer;
-        transition: background-color 0.2s, color 0.2s, gap 0.2s;
+        transition:
+          background-color 0.2s,
+          color 0.2s,
+          gap 0.2s;
       }
 
       .news-toggle:hover {
@@ -675,6 +680,32 @@
         color: #333;
       }
 
+      .modal-body p {
+        margin-bottom: 0.9rem;
+      }
+
+      .modal-body h4 {
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-top: 1.4rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .modal-body ul {
+        list-style: disc;
+        padding-left: 1.4rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .modal-body ol {
+        padding-left: 1.4rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .modal-body li {
+        margin-bottom: 0.4rem;
+      }
+
       .modal-body a {
         text-decoration: underline;
         color: var(--color-helvetia-blue);
@@ -916,6 +947,21 @@
             News
           </h2>
           <div class="news-timeline">
+            <!-- News Item 5 -->
+            <article class="news-card" onclick="openModal(4)">
+              <span class="news-date">9 Jun 2026</span>
+              <div class="news-body">
+                <h3 class="news-title">
+                  Call for Nominations: ORE Scientific Advisory Board
+                </h3>
+                <p class="news-excerpt">
+                  Open Research Europe launches an open call for nominations to
+                  establish its new Scientific Advisory Board by September 2026.
+                  Applications are open from 10 June to 10 July 2026.
+                </p>
+                <span class="news-read-more">Read more →</span>
+              </div>
+            </article>
             <!-- News Item 4 -->
             <article class="news-card" onclick="openModal(3)">
               <span class="news-date">28 May 2026</span>
@@ -933,7 +979,7 @@
               </div>
             </article>
             <!-- News Item 3 -->
-            <article class="news-card" onclick="openModal(2)">
+            <article class="news-card is-hidden" onclick="openModal(2)">
               <span class="news-date">26 Mar 2026</span>
               <div class="news-body">
                 <h3 class="news-title">
@@ -1297,7 +1343,7 @@
         <button class="modal-close" onclick="closeModal()">×</button>
         <span id="modal-date" class="modal-date"></span>
         <h2 id="modal-title" class="modal-title"></h2>
-        <p id="modal-body" class="modal-body"></p>
+        <div id="modal-body" class="modal-body"></div>
       </div>
     </div>
 
@@ -1326,6 +1372,76 @@
             "Open Research Europe Opens Up to a Broader Research Community",
           body: 'The new phase of ORE comes with a significantly wider eligibility. From autumn 2026, researchers from 11 participating countries will be able to publish in ORE without author-facing fees. Read more <a href="https://open-research-europe.ec.europa.eu/blog/this-autumn-open-research-europe-opens-up-to-a-wider-research-community" target="_blank" rel="noopener noreferrer">here</a>.',
         },
+        {
+          date: "9 JUN 2026",
+          title:
+            "Call for Nominations: Open Research Europe (ORE) Scientific Advisory Board",
+          body: `<p>As Open Research Europe (ORE) enters <a href="https://home.cern/cern-host-europes-flagship-open-access-publishing-platform/" target="_blank" rel="noopener noreferrer">its new phase in autumn 2026</a>, we are pleased to launch a call for nominations for membership of the new ORE Scientific Advisory Board (SAB). The aim is to establish the new SAB by <strong>September 2026.</strong></p>
+
+<p>The SAB will play a key role in supporting the governance, strategic development, and integrity of ORE from the launch onwards. Its responsibilities include:</p>
+<ul>
+  <li>Advising the Funders' Group, the Executive Committee, and the Operating Organisation (CERN) on scientific matters related to the publishing services and its policies (e.g. author guidelines), as well as on ethical guidelines and the peer review process.</li>
+  <li>Advising the Funders' Group, Executive Committee, and Operating Organisation on strategic aspects of the platform, including its future direction, sustainability, potential new services, and opportunities for collaboration.</li>
+  <li>Reviewing and providing advice on misconduct cases and transparency issues.</li>
+  <li>Submitting an annual written report to the Funders' Group on its activities. The report shall include an assessment of the publishing services offered by ORE to the research community and recommendations for improvement. The Funders' Secretariat will support this activity.</li>
+</ul>
+
+<h4>Eligibility Criteria</h4>
+<p>Candidates must meet the following criteria:</p>
+<ul>
+  <li>Nominees should have a researcher profile and should be affiliated with a research organisation.</li>
+  <li>Researchers with internationally recognised excellence, as acknowledged by their peer community.</li>
+  <li>Experience as an editor of international academic or community-led journals.</li>
+  <li>Experience in science communication and public engagement.</li>
+  <li>All candidates should demonstrate a clear commitment to, and alignment with, the principles of Open Science and its ongoing transition.</li>
+  <li>All candidates must declare and be free from any actual or potential conflicts of interest.</li>
+</ul>
+<p>The ideal candidate should be open to innovation in scholarly communication and demonstrate alignment with principles such as transparency, equity, and public accessibility of research. Candidates should also have experience contributing to policy, governance, or large-scale initiatives, with strong strategic and systems-level thinking skills.</p>
+<p>The SAB Members are appointed for three years, with a possibility of renewal (twice).</p>
+
+<h4>Application Requirements</h4>
+<p>All candidates will be asked to submit:</p>
+<ol>
+  <li>A concise CV (maximum 5 pages), including:
+    <ul>
+      <li>Up to 10 outputs that the candidate considers most significant in terms of scientific and/or broader societal impact (e.g. scholarly articles, datasets, patents). Please indicate which of the outputs are publicly available.</li>
+    </ul>
+  </li>
+  <li>A motivation letter of no more than 500 words.</li>
+</ol>
+
+<h4>Selection Process</h4>
+<p>The future ORE Scientific Advisory Board will consist of 20 members.</p>
+<p>The ORE Funders' Group has agreed to combine an open call for nominations with nominations submitted by participating funders. Each ORE funder may nominate up to three candidates per country. Candidates from both the open call and funder nominations will be considered together and assessed on equal footing, using a single, standardised evaluation framework.</p>
+<p>The following structured evaluation grid with three weighted dimensions will be used to assess candidates:</p>
+
+<h4>1. Scientific Excellence and Standing (≈60%)</h4>
+<p>Candidates should demonstrate internationally recognised research excellence and credibility within their field.</p>
+<ul>
+  <li>Strong publication record (field-appropriate).</li>
+  <li>Recognition by peers (awards, leadership and mentoring roles, academy membership, etc.).</li>
+  <li>Experience operating at an international level.</li>
+</ul>
+
+<h4>2. Editorial and Research Assessment Experience (≈20%)</h4>
+<p>Given the SAB's role in advising on publishing policies and peer review:</p>
+<ul>
+  <li>Experience as an editor, editorial board member, or reviewer in high-quality journals (please refer to the <a href="https://doaj.org/apply/guide/" target="_blank" rel="noopener noreferrer">Quality Control Process section</a> of the DOAJ guide as a point of reference).</li>
+</ul>
+
+<h4>3. Commitment to Open Science (≈20%)</h4>
+<ul>
+  <li>Demonstrated engagement with Open Science principles (e.g., transparency, equity, diversity, etc) and practices (e.g. open access, open data, reproducibility, open peer review, etc.).</li>
+</ul>
+
+<h4>Appointment Timeline</h4>
+<p>The ORE Executive Committee, supported by the SAB Selection Committee and the ORE Secretariat, will review all nominations and identify candidates for final voting, using the afore mentioned criteria. Each score will require a short written justification. Diversity will be considered in the ranking and shortlisting process to ensure the SAB reflects the breadth of the research ecosystem ORE serves.</p>
+<p>The Funders' Group will make the final appointment decisions and confirm the membership of the new ORE Scientific Advisory Board in September 2026.</p>
+
+<p>Join us in shaping the next chapter of Open Research Europe. If you meet the criteria and are committed to advancing Open Science, we welcome very much your application for the ORE Scientific Advisory Board between <strong>10 June and 10 July 2026. Please apply <a href="https://forms.cloud.microsoft/e/9r4j2UpFzv?origin=lprLink" target="_blank" rel="noopener noreferrer">here</a>.</strong></p>
+
+<p>If you have additional questions, please contact us at <a href="mailto:ore-contact@cern.ch">ore-contact@cern.ch</a></p>`,
+        },
       ];
 
       // Modal Logic
@@ -1345,11 +1461,9 @@
         const hidden = document.querySelectorAll(".news-card.is-hidden");
         const expanded = btn.getAttribute("aria-expanded") === "true";
         if (expanded) {
-          document
-            .querySelectorAll(".news-card")
-            .forEach((card, i) => {
-              if (i >= 2) card.classList.add("is-hidden");
-            });
+          document.querySelectorAll(".news-card").forEach((card, i) => {
+            if (i >= 2) card.classList.add("is-hidden");
+          });
           btn.querySelector(".news-toggle-label").textContent = "Show more";
           btn.setAttribute("aria-expanded", "false");
           btn.classList.remove("is-open");
