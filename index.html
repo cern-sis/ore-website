@@ -947,6 +947,22 @@
             News
           </h2>
           <div class="news-timeline">
+            <!-- News Item 6 -->
+            <article class="news-card" onclick="openModal(5)">
+              <span class="news-date">9 Jul 2026</span>
+              <div class="news-body">
+                <h3 class="news-title">
+                  How open peer review improves scholarly publication
+                </h3>
+                <p class="news-excerpt">
+                  Peer review is a cornerstone of scholarly communication. Open
+                  Research Europe builds on this with an open peer review process
+                  based on the Publish, Review, Curate model, making expert
+                  evaluation open, collaborative, and transparent.
+                </p>
+                <span class="news-read-more">Read more →</span>
+              </div>
+            </article>
             <!-- News Item 5 -->
             <article class="news-card" onclick="openModal(4)">
               <span class="news-date">9 Jun 2026</span>
@@ -963,7 +979,7 @@
               </div>
             </article>
             <!-- News Item 4 -->
-            <article class="news-card" onclick="openModal(3)">
+            <article class="news-card is-hidden" onclick="openModal(3)">
               <span class="news-date">28 May 2026</span>
               <div class="news-body">
                 <h3 class="news-title">
@@ -1442,6 +1458,19 @@
 
 <p>If you have additional questions, please contact us at <a href="mailto:ore-contact@cern.ch">ore-contact@cern.ch</a></p>`,
         },
+        {
+          date: "9 JUL 2026",
+          title: "How open peer review improves scholarly publication",
+          body: `<p>Peer review is one of the foundations of scholarly communication. It is primarily a process of quality control where experts evaluate each other's work to assess the quality, rigour, and trustworthiness of research. Reviewers are asked to check claims, methodology, and data. They evaluate the quality of the argumentation, assess the novelty of the findings, and critically examine the contribution to the discipline. An essential function of peer review is to help authors strengthen their work through constructive, collegial feedback, thereby maintaining high academic standards and advancing science and scholarship.</p>
+
+<p>Open Research Europe builds on these principles with an open peer review process based on the Publish, Review, Curate (PRC) publishing model. Rather than treating peer review as a private exchange, as is common in traditional publishing, ORE makes expert evaluation an open, collaborative, and transparent part of scholarly communication.</p>
+
+<p>With ORE, authors decide when their results are ready to receive public comment and constructive criticism. Following a series of formal checks, the paper is published before reviews are invited and carried out. Subsequent openly accessible reviews enable authors to enter into an open dialogue with reviewers, explaining how they took the reviewers' points and comments into account, or why they chose not to do so. The reviews help authors produce a revised, improved, and validated version of their paper. In addition, reviewers receive full credit for the contribution they have made to the paper, and reviews become citable scholarly outputs in their own right. By the end of the process a complete, open, and faithful record of the scholarly discussion can be tracked, in line with the principles of open science.</p>
+
+<p>Open peer review also benefits readers. By providing access to reviewer reports, author responses, and revised versions, ORE offers insight into how a piece of research has been evaluated, enabling greater confidence in the published record and a deeper understanding of the evidence and reasoning behind the final publication. It also highlights the collaborative nature of research and how it results from a continuous cycle of incremental improvement.</p>
+
+<p>By combining rapid dissemination with transparent expert review, ORE can avoid lengthy submit-reject-resubmit cycles, improve accountability, and make reviewer bias easier to detect. Opening up preserves the essential role of peer review while making the process itself visible, crediting everyone who contributes to improving research, and strengthening trust in the scholarly record.</p>`,
+        },
       ];
 
       // Modal Logic
@@ -1464,7 +1493,6 @@
           document.querySelectorAll(".news-card").forEach((card, i) => {
             if (i >= 2) card.classList.add("is-hidden");
           });
-          btn.querySelector(".news-toggle-label").textContent = "Show more";
           btn.setAttribute("aria-expanded", "false");
           btn.classList.remove("is-open");
         } else {
