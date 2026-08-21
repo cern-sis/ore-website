@@ -329,6 +329,70 @@
         transform: rotate(180deg);
       }
 
+      /* Newsletter */
+      .newsletter-wrap {
+        max-width: 900px;
+        margin: 3rem auto 0;
+      }
+
+      .newsletter-card {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 3rem;
+        align-items: center;
+        background: var(--color-arctic-white);
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        padding: 2.25rem 2.5rem;
+      }
+
+      .newsletter-intro {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 0;
+      }
+
+      .newsletter .fields {
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .newsletter .checkbox-group label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+
+      .newsletter .checkbox-group input {
+        accent-color: var(--color-helvetia-blue);
+      }
+
+      .newsletter .submit-btn {
+        margin-top: 0.25rem;
+      }
+
+      .required-mark {
+        color: var(--color-mosaic-pink);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
       @media (max-width: 768px) {
         .news-card {
           grid-template-columns: 1fr;
@@ -338,6 +402,12 @@
 
         .news-title {
           font-size: 1.4rem;
+        }
+
+        .newsletter-card {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          padding: 1.75rem;
         }
       }
 
@@ -1071,6 +1141,69 @@
               <span class="news-toggle-label">Show more</span>
               <span class="news-toggle-icon" aria-hidden="true">▾</span>
             </button>
+          </div>
+          <div class="newsletter-wrap">
+            <div class="newsletter-card">
+              <p class="newsletter-intro">
+                Stay informed by subscribing to our newsletter. We will send
+                you occasional updates about the platform.
+              </p>
+              <form
+                id="newsletter"
+                class="newsletter"
+                action="https://ore-newsletter-prod.web.cern.ch/subscribe"
+                method="post"
+              >
+                <input class="nonce" type="hidden" value="" />
+                <fieldset class="fields">
+                  <!-- Email Field (Required) -->
+                  <div class="form-group email">
+                    <label for="newsletter-email">
+                      Your E-mail address:<span
+                        class="required-mark"
+                        aria-hidden="true"
+                        >*</span
+                      >
+                      <span class="sr-only">Required</span>
+                    </label>
+                    <input
+                      id="newsletter-email"
+                      name="email"
+                      type="email"
+                      placeholder="E-mail"
+                      required
+                      aria-required="true"
+                    />
+                  </div>
+                  <!-- Name Field (Optional) -->
+                  <div class="form-group name">
+                    <label for="newsletter-name">Your Name:</label>
+                    <input
+                      id="newsletter-name"
+                      type="text"
+                      placeholder="Name"
+                    />
+                  </div>
+                  <!-- Lists Selection -->
+                  <div class="checkbox-group lists">
+                    <label for="l-94b1e356-2bbb-4678-bbe1-d8716046a65c">
+                      <input
+                        id="l-94b1e356-2bbb-4678-bbe1-d8716046a65c"
+                        name="l"
+                        type="checkbox"
+                        checked
+                        value="94b1e356-2bbb-4678-bbe1-d8716046a65c"
+                      />
+                      <span>Open Research Europe Newsletter</span>
+                    </label>
+                  </div>
+                  <!-- Submit Button -->
+                  <button class="submit-btn submit" type="submit">
+                    Subscribe
+                  </button>
+                </fieldset>
+              </form>
+            </div>
           </div>
         </div>
       </section>
